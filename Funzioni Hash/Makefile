@@ -17,10 +17,10 @@ TARGETS   =  testHash
 
 all: $(TARGETS)
 
-testHash: testHash.o lib_dbj2.a
+testHash: testHash.o lib_hash_function.a
 	@$(CC) $^ -o $@
 
-lib_dbj2.a: lib/djb2.o lib/djb2.h
+lib_hash_function.a: lib/hash_function.o lib/hash_function.h
 	@$(AR) $(ARFLAGS) $@ $^
 
 cleanall :

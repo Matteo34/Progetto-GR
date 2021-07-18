@@ -1,11 +1,11 @@
-# ar e rvs sono usati per le librerie
+
 AR       = ar
 ARFLAGS  = rvs
 
 CC       = gcc
 
 
-TARGETS   =  testHash.c
+TARGETS   =  testHash
 
 .PHONY: cleanall
 
@@ -17,10 +17,10 @@ TARGETS   =  testHash.c
 
 all: $(TARGETS)
 
-testHash: testHash.o lib_dbj2.a
+testHash: testHash.o lib_hash_function.a
 	@$(CC) $^ -o $@
 
-lib_dbj2.a: lib/djb2.0 lib/djb2.h
+lib_dbj2.a: lib/hash_function.o lib/hash_function.h
 	@$(AR) $(ARFLAGS) $@ $^
 
 cleanall :
