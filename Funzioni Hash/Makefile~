@@ -5,7 +5,7 @@ ARFLAGS  = rvs
 CC       = gcc
 
 
-TARGETS   =  testHash
+TARGETS   =  testHash, testCountMS
 
 .PHONY: cleanall
 
@@ -20,7 +20,9 @@ all: $(TARGETS)
 testHash: testHash.o lib_hash_function.a
 	@$(CC) $^ -o $@
 
-lib_dbj2.a: lib/hash_function.o lib/hash_function.h
+testCountMS: testCountMS.o lib_hash_function.a
+
+lib_hash_function.a: lib/hash_function.o lib/hash_function.h
 	@$(AR) $(ARFLAGS) $@ $^
 
 cleanall :

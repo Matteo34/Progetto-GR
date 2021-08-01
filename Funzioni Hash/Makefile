@@ -5,7 +5,7 @@ ARFLAGS  = rvs
 CC       = gcc
 
 
-TARGETS   =  testHash
+TARGETS   =    MainTest
 
 .PHONY: cleanall
 
@@ -17,11 +17,12 @@ TARGETS   =  testHash
 
 all: $(TARGETS)
 
-testHash: testHash.o lib_hash_function.a
+MainTest: MainTest.o lib_count_min.a
 	@$(CC) $^ -o $@
 
-lib_hash_function.a: lib/hash_function.o lib/hash_function.h
+lib_count_min.a: lib/count_min_sketch.o lib/count_min_sketch.h
 	@$(AR) $(ARFLAGS) $@ $^
+
 
 cleanall :
 	@rm -f *.txt *.a *.o lib/*.o lib/*.a
