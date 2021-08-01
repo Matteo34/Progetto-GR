@@ -4,8 +4,8 @@
 
 #include "lib/generale.h"
 #include "lib/count_min_sketch.h"
-#define COLONNE 100
-#define RIGHE 50
+#define RIGHE 101
+#define COLONNE 47
 //include 
 
 typedef struct {
@@ -20,7 +20,7 @@ void read_example_file(cmsketch_t* table);
 test_t* read_risultati_file();
 
 int main(){
-    cmsketch_t* table = new_count_min_sketch(COLONNE, RIGHE);
+    cmsketch_t* table = new_count_min_sketch(RIGHE, COLONNE);
     read_example_file(table);
     test_t* test = read_risultati_file();
     for(int i = 0 ; i< test->n; i++){
