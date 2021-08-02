@@ -9,9 +9,9 @@
 #include <stdio.h>
 void print_table(cmsketch_t* table){
     printf("\n");
-    for(int i = 0 ; i< table->c; i++){
-        for(int j=0; j< table->r; j++){
-            printf(" %d", table->t[i][j]);
+    for(int i = 0 ; i< table->r; i++){
+        for(int j=0; j< table->c; j++){
+            printf(" %-4d", table->t[i][j]);
         }
          printf("\n");
     }
@@ -24,22 +24,22 @@ void print_table(cmsketch_t* table){
 void hash_function(const char* key, unsigned int depth, unsigned int *a, unsigned int *b );
 //Crea una nuova struttura dati
 //r = righe   c = colonne
-cmsketch_t* new_count_min_sketch(int c, int r){
+cmsketch_t* new_count_min_sketch(int r, int c){
    cmsketch_t* table;
    table = malloc(sizeof(cmsketch_t));
    table->r = r;
    table->c = c;
-   table->t = malloc( c*sizeof(unsigned int*));
+   table->t = malloc( r*sizeof(unsigned int*));
 
-   for( int i = 0; i< c; i++){
-       table->t[i] = calloc(r,sizeof(unsigned int*));
+   for( int i = 0; i< r; i++){
+       table->t[i] = calloc(c,sizeof(unsigned int*));
    } 
    return table;
 }
 
 void free_count_min_sketch(cmsketch_t* table){
 
-    for(int i = 0; i<table->c; i++){
+    for(int i = 0; i<table->r; i++){
         free(table->t[i]);
     }            
     free(table->t);
@@ -52,7 +52,7 @@ void add_min_count_sketch(cmsketch_t* table, char *str){
     hash_function(str,table->r, &a, &b);
     for(int i=0; i<table->c; i++){
         hash = ((a*i + b) )% table->r;
-        table->t[i][hash]++; 
+        table->t[hash][i]++; 
     }    
 }
 
@@ -62,16 +62,17 @@ unsigned int read_count_min_sketch(cmsketch_t * table, char *str){
     hash_function(str, table->r, &a, &b);
     for(int i=0; i<table->c; i++){
         hash = ((a*i + b) )% table->r;
-        if(table->t[i][hash] <min ) min =table->t[i][hash];
+        if(table->t[hash][i] <min ) min =table->t[hash][i];
     }
     return min;
 }
+
 //Somma la seconda tabella nella Prima
 cmsketch_t* sum_count_min_sketch(cmsketch_t * table1, cmsketch_t * table2){
     if(table1->c == table2->c && table1->r==table2->r){
         int i,j;
-        cmsketch_t * sum = new_count_min_sketch(table1->c, table1->r);
-        for(i=0; i<table1->c; i++){
+        cmsketch_t * sum = new_count_min_sketch(table1->r, table1->c);
+        for(i=0; i<table1->r; i++){
             for(j=0; j<table1->c; j++){
                 sum->t[i][j] = table1->t[i][j]+table2->t[i][j];
             }
@@ -82,8 +83,8 @@ cmsketch_t* sum_count_min_sketch(cmsketch_t * table1, cmsketch_t * table2){
 
 cmsketch_t* clone_count_min_sketch(cmsketch_t * table){
         int i,j;
-        cmsketch_t * clone = new_count_min_sketch(table->c, table->r);
-        for(i=0; i<table->c; i++){
+        cmsketch_t * clone = new_count_min_sketch(table->r, table->c);
+        for(i=0; i<table->r; i++){
             for(j=0; j<table->c; j++){
                 clone->t[i][j] = table->t[i][j];
             }
@@ -148,7 +149,7 @@ unsigned int * colonna_count_min_sketch(cmsketch_t* table, char* str){
     hash_function(str,table->r, &a, &b);
     for(int i=0; i<table->c; i++){
         hash = ((a*i + b) )% table->r;
-        aux[i]=table->t[i][hash]; 
+        aux[i]=table->t[hash][i]; 
     }
     return aux;
 }

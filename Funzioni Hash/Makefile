@@ -22,9 +22,11 @@ MainTest: MainTest.o lib_count_min.a
 
 lib_count_min.a: lib/count_min_sketch.o lib/count_min_sketch.h
 	@$(AR) $(ARFLAGS) $@ $^
-
+test:
+	@valgrind --leak-check=full ./MainTest
 
 cleanall :
 	@rm -f *.txt *.a *.o lib/*.o lib/*.a
+	@rm -f MainTest
 	@rm -f testHash
 
