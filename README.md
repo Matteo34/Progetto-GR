@@ -27,7 +27,14 @@ caricare nel Count-Min-Sketch e il file risultati che contiene il numero di volt
    *  **cmsketch_t * clone_count_min_sketch(cmsketch_t * table)** ritorna una nuova struttura dati, che è una copia del parametro passato
    *  **unsigned int * colonna_count_min_sketch(cmsketch_t * table, char * str)** ritorna un array che contiene i valori associaati alla stringa str nella struttura dati
    
-  
+## MAKEFILE
+ Utilizzare il comando **make** per la compilazione.
+ I comandi **make cleanall** e **make test** permettono rispettivamente di eliminare tutti i file prodotti dalla compilazione e di eseguire il Test.
+ 
+ ## TEST
+ Il test può essere eseguito con il comando **make test**.
+ Consiste nella lettura di 6 file, 3 contenenti gli esempi da aggiungere nella struttura dati e altri 3 contenenti il numero di volte alcune parole compaino nel    file di esempi.
+ 
   
   
   
