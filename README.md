@@ -18,7 +18,7 @@ caricare nel Count-Min-Sketch e il file risultati che contiene il numero di volt
   La struttura dati è implementata con due interi che indicano le colonne e la profondità, e da 
   una matrice di interi come contatore.
   
-  #### funzioni
+  ## funzioni
   
   
   
