@@ -12,14 +12,21 @@ caricare nel Count-Min-Sketch e il file risultati che contiene il numero di volt
   
   typedef struct {
     int c, r;        //c=colonne, p = profondità
-    unsigned int * * t;
+    unsigned int ** t;
   } cmsketch_t;
   
   La struttura dati è implementata con due interi che indicano le colonne e la profondità, e da 
   una matrice di interi come contatore.
   
-  ## funzioni
-  
+  **funzioni** :
+   * **cmsketch_t* new_count_min_sketch(int c, int r)** crea una struttura dati con c colonne e r righe
+   *  **void free_count_min_sketch(cmsketch_t* table)** dealloca la memoria utilizzata
+   *  **void add_min_count_sketch(cmsketch_t* table, char * str)** aggiunge al contatore una istanza di *str
+   *  **unsigned int read_count_min_sketch(cmsketch_t * table, char * str)** legge il valore corrispondete a *str
+   *  **cmsketch_t* sum_count_min_sketch(cmsketch_t * table1, cmsketch_t * table2)** ritorna una nuova struttura dati, che a come valore la somma delle due struttura passate come parametri
+   *  **cmsketch_t* clone_count_min_sketch(cmsketch_t * table)** ritorna una nuova struttura dati, che è una copia del parametro passato
+   *  **unsigned int * colonna_count_min_sketch(cmsketch_t* table, char* str)** ritorna un array che contiene i valori associaati alla stringa str nella struttura dati
+   
   
   
   
