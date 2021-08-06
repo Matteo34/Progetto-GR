@@ -91,7 +91,7 @@ cmsketch_t* clone_count_min_sketch(cmsketch_t * table){
 }
 
 
-unsigned int * colonna_count_min_sketch(cmsketch_t* table, char* str){
+unsigned int * riga_count_min_sketch(cmsketch_t* table, char* str){
    u_int32_t a, b,hash;
    u_int32_t * aux = malloc(sizeof(u_int32_t)*table->c);
     hash_function(str,table->r, &a, &b);

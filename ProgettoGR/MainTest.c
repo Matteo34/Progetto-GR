@@ -22,6 +22,7 @@ typedef struct {
     int n;
 } test_t;
 
+void check_value(test_t *test, cmsketch_t * table );
 void free_test(test_t *test);
 test_t* new_test_t(int n);
 void read_example_file(cmsketch_t* table, char* esempi);
@@ -33,28 +34,18 @@ int main(){
     read_example_file(small_table, SMALLES);
     test_t* small_test = read_risultati_file(SMALLRIS);
     print_table(small_table);
+    //printf("***************************small_table*******************************************************************************************************\n");
+    check_value(small_test, small_table);
 
     //prima lettura 
     cmsketch_t* table = new_count_min_sketch(RIGHE, COLONNE);
     read_example_file(table, ES1);
     test_t* test = read_risultati_file(RIS1);
-    /*
-    for(int i = 0 ; i< test->n; i++){
-        printf(" nome : %s  valore : %d  stima : %d \n", test->nome[i],
-                 test->valore[i], read_count_min_sketch(table, test->nome[i]));
-        
-        int * aux =colonna_count_min_sketch( table, test->nome[i]);
-        //printf("TERZO\n"); 
-        
-        for(int j =0 ; j<table->c; j++){
-                printf(" %d ", aux[j] );
-        }
-        free(aux);
-        printf("\n");
-        printf("\n");
-        printf("\n");
-    }*/
+   
     print_table(table);
+    //printf("***************************table1*******************************************************************************************************\n");
+    //check_value(test, table);
+
 
     //seconda lettura
         //seconda lettura
@@ -65,6 +56,8 @@ int main(){
     printf("\n");
     printf("\n");
     print_table(table2);
+   // printf("***************************table2*******************************************************************************************************\n");
+    //check_value(test2, table2);
 
     cmsketch_t* table3;
     if((table3 = sum_count_min_sketch(table, table2))!=NULL){
@@ -113,7 +106,7 @@ test_t* read_risultati_file( char* risultati){
     char *aux;
     int n, i;
     FILE *ifp;
-    CHECK_EQ(ifp=fopen(RIS1, "r"),NULL, "fopen");
+    CHECK_EQ(ifp=fopen(risultati, "r"),NULL, "fopen");
     //leggere una riga
     char *s= malloc(sizeof(char)*BUF_FGETS);
     CHECK_EQ(fgets(s, BUF_FGETS, ifp),NULL, "fgets");  
@@ -156,5 +149,22 @@ void free_test(test_t *test){
     free(test);
 
 }
+//controlla che i valori della riga della tabella non siano minori alla stima
+void check_value(test_t *test, cmsketch_t * table ){
 
+    
+    for(int i = 0 ; i< test->n; i++){
+        //printf(" nome : %s  valore : %d  stima : %d \n", test->nome[i],
+        //         test->valore[i], read_count_min_sketch(table, test->nome[i]));
+        
+        int * aux =riga_count_min_sketch( table, test->nome[i]);
+        //printf("TERZO\n"); 
+        
+        for(int j =0 ; j<table->c; j++){
+                if(test->valore[i]>aux[j]) printf("errore  %s \n", test->nome[i]);
+        }
+        free(aux);
+    }
+
+}
 

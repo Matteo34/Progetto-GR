@@ -13,7 +13,7 @@ void add_min_count_sketch(cmsketch_t* table, char *str);
 u_int32_t read_count_min_sketch(cmsketch_t * table, char *str);
 cmsketch_t* sum_count_min_sketch(cmsketch_t * table1, cmsketch_t * table2);
 cmsketch_t* clone_count_min_sketch(cmsketch_t * table);
-u_int32_t * colonna_count_min_sketch(cmsketch_t* table, char* str);
+u_int32_t * riga_count_min_sketch(cmsketch_t* table, char* str);
 
 
 //CANCELLARE
