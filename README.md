@@ -11,8 +11,8 @@ caricare nel Count-Min-Sketch e il file risultati che contiene il numero di volt
 ## FUNZIONI count_min_sketch.c 
   
   typedef struct {
-    int c, r;     
-    unsigned int ** t;
+    u_int32_t c, r;     
+    u_int32_t ** t;
   } cmsketch_t;
   
   La struttura dati è implementata con due interi che indicano le colonne e la profondità, e da 
