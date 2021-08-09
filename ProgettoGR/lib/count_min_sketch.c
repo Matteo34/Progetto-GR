@@ -2,11 +2,12 @@
 #include <string.h>
 #include <limits.h>
 #include "count_min_sketch.h"
-#include "generale.h"
+#include "fun_hash.h"
 
 
-//CANCELLARE
+
 #include <stdio.h>
+//stampa la matrice 
 void print_table(cmsketch_t* table){
     printf("\n");
     for(int i = 0 ; i< table->r; i++){
@@ -35,6 +36,7 @@ cmsketch_t* new_count_min_sketch(u_int32_t r, u_int32_t c){
    return table;
 }
 
+//libera la memoria
 void free_count_min_sketch(cmsketch_t* table){
 
     for(int i = 0; i<table->r; i++){
@@ -44,6 +46,7 @@ void free_count_min_sketch(cmsketch_t* table){
     free(table);
 }
 
+//aggiunge la conta di un elemento
 void add_min_count_sketch(cmsketch_t* table, char *str){
     u_int32_t a, b,hash;
 
@@ -54,7 +57,8 @@ void add_min_count_sketch(cmsketch_t* table, char *str){
     }    
 }
 
-unsigned int read_count_min_sketch(cmsketch_t * table, char *str){
+//legge la stima del valore
+u_int32_t read_count_min_sketch(cmsketch_t * table, char *str){
     u_int32_t a, b, hash, min=UINT_MAX;
 
     hash_function(str, table->r, &a, &b);
@@ -79,6 +83,7 @@ cmsketch_t* sum_count_min_sketch(cmsketch_t * table1, cmsketch_t * table2){
     }else return NULL;
 }
 
+//restituisce una copia del parametro
 cmsketch_t* clone_count_min_sketch(cmsketch_t * table){
         int i,j;
         cmsketch_t * clone = new_count_min_sketch(table->r, table->c);
@@ -90,8 +95,8 @@ cmsketch_t* clone_count_min_sketch(cmsketch_t * table){
         return clone;
 }
 
-
-unsigned int * riga_count_min_sketch(cmsketch_t* table, char* str){
+//i valori associati alla stringa per ogni colonna
+u_int32_t * riga_count_min_sketch(cmsketch_t* table, char* str){
    u_int32_t a, b,hash;
    u_int32_t * aux = malloc(sizeof(u_int32_t)*table->c);
     hash_function(str,table->r, &a, &b);

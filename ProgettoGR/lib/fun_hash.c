@@ -2,7 +2,6 @@
 #include <string.h>
 #include <limits.h>
 #include "count_min_sketch.h"
-#include "generale.h"
 
 u_int32_t hash_djb2(const char *str)
     {
@@ -47,9 +46,9 @@ u_int32_t hash_djb2(const char *str)
 {
   return p[i];
 }
-//-----------------------------------------------------------------------------
+//*************************************************************************
 
-u_int32_t MurmurHash3_x86_32 ( const void * key, int len, u_int32_t seed ){
+u_int32_t MurmurHash3 ( const void * key, int len, u_int32_t seed ){
   
   const u_int8_t * data = (const u_int8_t*)key;
   const int nblocks = len / 4;
@@ -59,41 +58,30 @@ u_int32_t MurmurHash3_x86_32 ( const void * key, int len, u_int32_t seed ){
   const u_int32_t c1 = 0xcc9e2d51;
   const u_int32_t c2 = 0x1b873593;
 
-  //----------
-  // body
-
   const u_int32_t * blocks = (const u_int32_t *)(data + nblocks*4);
 
-  for(int i = -nblocks; i; i++)
-  {
-    u_int32_t k1 = getblock32(blocks,i);
+  for(int i = -nblocks; i; i++) {
+      u_int32_t k1 = getblock32(blocks,i);
 
-    k1 *= c1;
-    k1 = rotl32(k1,15);
-    k1 *= c2;
-    
-    h1 ^= k1;
-    h1 = rotl32(h1,13); 
-    h1 = h1*5+0xe6546b64;
+      k1 *= c1;
+      k1 = rotl32(k1,15);
+      k1 *= c2;
+      
+      h1 ^= k1;
+      h1 = rotl32(h1,13); 
+      h1 = h1*5+0xe6546b64;
   }
-
-  //----------
-  // tail
 
   const u_int8_t * tail = (const u_int8_t*)(data + nblocks*4);
 
   u_int32_t k1 = 0;
 
-  switch(len & 3)
-  {
-  case 3: k1 ^= tail[2] << 16;
-  case 2: k1 ^= tail[1] << 8;
-  case 1: k1 ^= tail[0];
-          k1 *= c1; k1 = rotl32(k1,15); k1 *= c2; h1 ^= k1;
+  switch(len & 3){
+      case 3: k1 ^= tail[2] << 16;
+      case 2: k1 ^= tail[1] << 8;
+      case 1: k1 ^= tail[0];
+              k1 *= c1; k1 = rotl32(k1,15); k1 *= c2; h1 ^= k1;
   };
-
-  //----------
-  // finalization
 
   h1 ^= len;
 
@@ -102,18 +90,14 @@ u_int32_t MurmurHash3_x86_32 ( const void * key, int len, u_int32_t seed ){
   return h1;
 } 
 
-//---------------- -------------------------------------------------------------
+//***********************************************************************************************
 
 
 void hash_function(const char* key, u_int32_t depth, u_int32_t *a, u_int32_t *b ){
     
-       unsigned long a1 = MurmurHash3_x86_32(key,strlen(key), 479001599);
+       unsigned long a1 = MurmurHash3(key,strlen(key), 479001599);
        unsigned long b1 = hash_fnv_1a(key);
 
        *a = a1%depth;
-       *b = b1 % depth;
-        if(a == 0){
-            *a = hash_fnv_1a(key);
-            *b = hash_djb2(key);
-        }        
+       *b = b1 % depth;   
 }

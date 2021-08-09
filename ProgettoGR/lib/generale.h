@@ -10,7 +10,7 @@
          exit(EXIT_FAILURE);\
 }
 
-//extern struct timespec diff(struct timespec start, struct timespec end);
+
 void hash_function(const char* key, unsigned int depth, unsigned int *a, unsigned int *b );
 
 
