@@ -34,7 +34,9 @@ caricare nel Count-Min-Sketch e il file risultati/ris che contengono il numero d
  ## TEST
  Il test può essere eseguito con il comando **make test**.
  
- Il test crea le strutture dati e le carica con i file di 'esempio/es'. Per ogni file di esempio letto, legge il file che contiene i risultati e salva i dati di quest'ultima in una struttura dati ausiliaria **test_t**. Caricate entrambe le strutture dati esegue la funzione **void check_value**.
+ Il test crea le strutture dati e le carica con i file di 'esempio/es'. Per ogni file di esempio letto, legge il file che contiene i risultati e salva i dati di quest'ultima in una struttura dati ausiliaria **test_t**. Caricate entrambe le strutture dati esegue la funzione **void check_value**. La funzione check_value effettua due controlli :
+  * nel primo verifica che i valori di determinate stringhe presenti nel Count_Min_sketch, non siano inferiori al numero effettivo di inserimenti effettuati.
+  * nel secondo controlla che il numero di add effettuati sia uguale all'effettivo numero di stringhe inserite.
  
   
   
