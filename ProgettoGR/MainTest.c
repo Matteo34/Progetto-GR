@@ -9,13 +9,13 @@
 #define COLONNE 47
 #define SMALLR 5
 #define SMALLC 3
-#define SMALLES1 "./Test/small_es1.txt"
-#define SMALLRIS1 "./Test/small_ris1.txt"
-#define SMALLES2 "./Test/small_es2.txt"
-#define ES1 "./Test/esempi.txt"
-#define RIS1 "./Test/risultati.txt"
-#define ES2 "./Test/esempi2.txt"
-#define RIS2 "./Test/risultati2.txt"
+#define SMALLES1 "./Test/small_es_1.txt"
+#define SMALLRIS1 "./Test/small_ris_1.txt"
+#define SMALLES2 "./Test/small_es_2.txt"
+#define ES1 "./Test/es_primo.txt"
+#define RIS1 "./Test/ris_primo.txt"
+#define ES2 "./Test/es_secondo.txt"
+#define RIS2 "./Test/ris_secondo.txt"
 #define BUF_FGETS 60
 
 #define CHECK_EQ(x, val,str)\
@@ -78,22 +78,26 @@ int main(int argc, char *argv[]){
     if(argc!=1) print_table(table2);
     check_value(test2, table2);
 
-   //**************************************************************************************************************************************
+   //**************SUM,CLONE************************************************************************************************************************
    
 
-    cmsketch_t* table3;
-    if((table3 = sum_count_min_sketch(table, table2))!=NULL){
-         if(argc!=1) print_table(table3);
+    cmsketch_t* sum_table;
+    if((sum_table = sum_count_min_sketch(table, table2))!=NULL){
+         if(argc!=1) print_table(sum_table);
     }
-    cmsketch_t* table_clone = clone_count_min_sketch(table3);
+    cmsketch_t* table_clone = clone_count_min_sketch(sum_table);
     if(argc!=1) print_table(table_clone);
-    
+
+    cmsketch_t* table_s;
+    if((table_s = sum_count_min_sketch(table, small_table))!=NULL){
+         print_table(table_s);
+    }
     
     
     //******free****************************************************************
     free_count_min_sketch(table);
     free_count_min_sketch(table2);
-    free_count_min_sketch(table3);
+    free_count_min_sketch(sum_table);
     free_count_min_sketch(table_clone);
     free_count_min_sketch(small_table);
     free_count_min_sketch(small_table2);

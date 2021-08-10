@@ -23,7 +23,7 @@ MainTest: MainTest.o lib_count_min.a
 lib_count_min.a: lib/count_min_sketch.o lib/fun_hash.o
 	@$(AR) $(ARFLAGS) $@ $^
 test:
-	@valgrind --leak-check=full ./MainTest
+	@valgrind --leak-check=full --track-origins=yes ./MainTest
 
 cleanall :
 	@rm -f *.txt *.a *.o lib/*.o lib/*.a

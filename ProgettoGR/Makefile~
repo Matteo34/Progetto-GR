@@ -20,7 +20,7 @@ all: $(TARGETS)
 MainTest: MainTest.o lib_count_min.a
 	@$(CC) $^ -o $@
 
-lib_count_min.a: lib/count_min_sketch.o lib/count_min_sketch.h
+lib_count_min.a: lib/count_min_sketch.o lib/fun_hash.o
 	@$(AR) $(ARFLAGS) $@ $^
 test:
 	@valgrind --leak-check=full ./MainTest
