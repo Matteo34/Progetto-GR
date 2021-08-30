@@ -30,7 +30,7 @@ atteso nella struttura dati per determinate stringhe.
    
 ## MAKEFILE
  Utilizzare il comando **make** per la compilazione.
- I comandi **make cleanall** e **make test** permettono rispettivamente di eliminare tutti i file prodotti dalla compilazione e di eseguire il Test.
+ I comandi **make cleanall**,  **make test1** e **make test2** permettono rispettivamente di eliminare tutti i file prodotti dalla compilazione e di eseguire i test. I due test sono identici, il secondo stampa sul terminale tutte le strutture dati create.
  
  ## TEST
  Il test può essere eseguito con il comando **make test**.
