@@ -42,6 +42,8 @@ atteso nella struttura dati per determinate stringhe.
   * Il secondo controlla che il numero di add effettuati sia uguale all'effettivo numero di stringhe presenti nel file di 'esempio'.
 
 Se si esegue MainTest senza parametri vengono stampate anche le strutture dati relative ai file 'es_secondo.txt' e 'es_primo.txt' .
+
+La funzione **check_value** definita all'interno del file MainTest.c, confronta i valori presenti nei file denominati **ris** con i valori del Count Min Sketch associato, verificando che il valore associato a una stringa non sia minore dei suoi inserimenti e controllando che il numero totale dei valori presenti nella tabella sia uguale al numero di inserimenti.
  
   
   
