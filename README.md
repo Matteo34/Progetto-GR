@@ -1,7 +1,7 @@
 # Progetto-GR
 Implementazione di un **Count-Min-Sketch** .
 ***
-## FILE
+## Directories
 Nella cartella principale sono presenti il MakeFile, l'algoritmo che esegue il test (MainTest.c), e le directories Test e lib.
 La **directory lib** contiene il codice delle funzioni che
 implementano la struttura dati Count-Min-Sketch e le relative funzioni di hash.
@@ -9,7 +9,7 @@ La **directory Test** contiene i file di Test. I file all'interno della cartella
 nome **es**, allora servono per riempire la struttura dati. Se invece contengono nel nome **ris** , allora contengono il valore minimo
 atteso nella struttura dati per determinate stringhe.
 
-## FUNZIONI count_min_sketch.c 
+## File count_min_sketch.c 
   
   typedef struct {
      u_int32_t c, r;     
