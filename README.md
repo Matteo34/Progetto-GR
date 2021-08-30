@@ -1,5 +1,5 @@
 # Progetto-GR
-Implementazione di un **Count-Min-Sketch** da aggiungere a nDPI
+Implementazione di un **Count-Min-Sketch** .
 ***
 ## FILE
 Nella cartella principale sono presenti il MakeFile, l'algoritmo che esegue il test (MainTest.c), e le directories Test e lib.
