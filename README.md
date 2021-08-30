@@ -41,7 +41,6 @@ atteso nella struttura dati per determinate stringhe.
   * Il primo controllo consiste nel verificare che i valori di determinate stringhe presenti nel Count_Min_sketch, non siano inferiori al numero effettivo di inserimenti effettuati.
   * Il secondo controlla che il numero di add effettuati sia uguale all'effettivo numero di stringhe presenti nel file di 'esempio'.
 
-Se si esegue MainTest senza parametri vengono stampate anche le strutture dati relative ai file 'es_secondo.txt' e 'es_primo.txt' .
 
  
   
