@@ -1,12 +1,13 @@
 # Progetto-GR
-Implementazione di un **Count-Min-Sketch** da aggiungere alla libreria nDPI
+Implementazione di un **Count-Min-Sketch** da aggiungere a nDPI
 ***
 ## FILE
-Nella cartella principale sono presenti il MakeFile e l'Algoritmo per eseguire il test.
-Sono presenti altre due directories, lib e test. La **directory lib** contiene il codice delle funzioni che
+Nella cartella principale sono presenti il MakeFile, l'algoritmo che esegue il test (MainTest.c), e le directories Test e lib.
+La **directory lib** contiene il codice delle funzioni che
 implementano la struttura dati Count-Min-Sketch e le relative funzioni di hash.
-La **directory Test** contiene i file di Test, suddivisi in coppie di due file. I file chiamat esempio/es che contengono tutti gli esempi da
-caricare nel Count-Min-Sketch e il file risultati/ris che contengono il numero di volte che determinate stringhe sono state inserite.
+La **directory Test** contiene i file di Test. I file all'interno della cartella possono essere di due "tipi". Se i file contengono nel loro
+nome **es**, allora servono per riempire la struttura dati. Se invece contengono nel nome **ris** , allora contengono il valore minimo
+atteso nella struttura dati per determinate stringhe.
 
 ## FUNZIONI count_min_sketch.c 
   
